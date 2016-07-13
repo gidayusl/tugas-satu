@@ -6,24 +6,19 @@ class Player
     @manna = 40
   end
   
-  def get_blood
-    @blood
+  def attack 
+    blood -= 20
   end
-  def get_manna
-    @manna
-  end
-  def get_name
-    @name
-  end
-  def set_name
-    @name
+  
+  def defend
+    manna -= 5
   end
 end
 
 class Main
-  players = Hash.new
+  @players = Hash.new
   
-  def menu 
+  def self.menu 
     puts "# ============================== #
     # Welcome to the Battle Arena #
     # ----------------------------------------------------- #
@@ -31,33 +26,60 @@ class Main
     # 1 type 'new' to create a character #
     # 2. type 'start' to begin the fight #
     # ----------------------------------------------------- #
-    # Current Player: #
-    # - #
+    # Current Player: #"
+    Main.current_player
+    puts "# - #
     # * Max player 2 or 3 #
     # ----------------------------------------------------- #"
     choose_m = gets.chomp
     if choose_m.eql? "new"
-     
+      if @players.count < 4
+        Main.set_player
+      else
+        
+      end
+      
     elsif choose_m.eql? "start"
       
     else
-      puts "Nothing to do"
+      Main.menu
     end
     
   end
   
-  def current_player
-    players[name] = Player.new nama_p
+  def self.set_player
+    puts "# ============================== #
+    # Welcome to the Battle Arena #
+    # ----------------------------------------------------- #
+    # Description: #
+    # 1 type 'new' to create a character #
+    # 2. type 'start' to begin the fight #
+    # ----------------------------------------------------- #
+    # Put Player Name: #"
+    nama_p = gets.chomp
+    @players[nama_p] = Player.new(nama_p)
+    puts "# - #
+    # * Max player 2 or 3 #
+    # ----------------------------------------------------- #
+    #Press Enter to continue#"
+    
+    enter = gets.chomp
+    if enter
+      Main.menu
+    end
+    # Main.check_player
   end
   
-  def set_player
+  def self.current_player
+    @players.each do |key, p|
+      puts "Name: #{@players[key].name}, Blood: #{@players[key].blood}, Manna: #{@players[key].manna}"
+    end  
+  end
+  
+  def self.battle
     
   end
   
-  def check_player
-    
-  end
 end
 
-main_p = Main.new
-main_p.menu
+Main.menu
