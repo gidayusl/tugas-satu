@@ -5,20 +5,19 @@ class Player
     @blood = 100
     @manna = 40
   end
-  
-  def attack 
+
+  def attack
     blood -= 20
   end
-  
+
   def defend
-    manna -= 5
+    manna -= 10
   end
 end
 
 class Main
   @players = Hash.new
-  
-  def self.menu 
+  def self.menu
     puts "# ============================== #
     # Welcome to the Battle Arena #
     # ----------------------------------------------------- #
@@ -31,22 +30,20 @@ class Main
     puts "# - #
     # * Max player 2 or 3 #
     # ----------------------------------------------------- #"
-    choose_m = gets.chomp
-    if choose_m.eql? "new"
-      if @players.count < 4
-        Main.set_player
-      else
-        
-      end
-      
-    elsif choose_m.eql? "start"
-      
-    else
-      Main.menu
-    end
-    
+  # choose_m = gets.chomp
+  # if choose_m.eql? "new"
+  #
+  # Main.set_player
+  #
+  #
+  # elsif choose_m.eql? "start"
+  #
+  # else
+  # Main.menu
+  # end
+
   end
-  
+
   def self.set_player
     puts "# ============================== #
     # Welcome to the Battle Arena #
@@ -62,24 +59,24 @@ class Main
     # * Max player 2 or 3 #
     # ----------------------------------------------------- #
     #Press Enter to continue#"
-    
+
     enter = gets.chomp
     if enter
       Main.menu
     end
-    # Main.check_player
+  # Main.check_player
   end
-  
+
   def self.current_player
     @players.each do |key, p|
       puts "Name: #{@players[key].name}, Blood: #{@players[key].blood}, Manna: #{@players[key].manna}"
-    end  
+    end
   end
-  
+
   def self.battle
-    
+
   end
-  
+
 end
 
 Main.menu
