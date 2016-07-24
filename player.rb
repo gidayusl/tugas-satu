@@ -76,6 +76,14 @@ class Main
     end  
   end
   
+  def self.attacker
+    
+  end
+  
+  def self.defender
+    
+  end
+  
   def self.battle
     
   end
